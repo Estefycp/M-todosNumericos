@@ -32,7 +32,7 @@ double biseccion(funcEv func, double a , double b ){
     return raiz;
 }
 
-<stdexcept>
+
 double funcion(double x){
    return sin(x) + 2*x - 1;
 }
