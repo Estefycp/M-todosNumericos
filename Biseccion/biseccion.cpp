@@ -1,4 +1,3 @@
-#include <stdexcept>
 #include <iostream>
 #include <cmath>
 #define errorMin 1E-15
