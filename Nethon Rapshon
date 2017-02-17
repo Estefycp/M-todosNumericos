@@ -1,0 +1,52 @@
+#include<iostream>
+#include<cmath>
+#include<iomanip>
+#define e .000001
+using namespace std;
+
+double f(double x)
+{
+    double a = pow(x, 7) -.9;   //ecuacion
+    if (isnan(a)) {
+    cerr << "la funcion es discontinua \n " << x << endl;
+  }
+    return a;
+}
+double fprime(double x){
+
+    double b = 7*pow(x,6);    //derivada de la ecuacion
+    if (isnan(b)) {
+    cerr << "la primera derivada es discontinua en \n " << x << endl;
+  }
+    return b;
+
+}
+int main()
+{
+    double x,x1,fx,fx1;
+    cout.precision(7);        //precision de decimales
+    cout.setf(ios::fixed);
+    cout<<"Dame la primera aproximacion\n";    //El primer guess
+    cin>>x1;
+
+    fx=f(x);
+    fx1=fprime(x);
+
+    int i=0;
+    do
+    {
+        x=x1;                /*x es el ultimo valor calculado como guess*/
+        fx=f(x);            //se evalua la funcion
+        fx1=fprime(x);            //se evalua la derivada de la funcion
+        x1=x-(fx/fx1);            /*se calcula el nuevo guess*/
+        i++;
+        cout<<"error " <<abs(x1-x)<<"\n";
+
+    }
+    while (abs(x1-x)>=e); /*si en el nuevo guess evaluado en la funcion es mayor o igual al error, continua el loop*/ //abs(x1-x)/x1 error relativo iterativo //error absoluto iterativo
+
+        cout<<"iteraciones "<<i<<"\n";
+        cout<<"La raiz es  "<<x1<<endl;
+
+    return 0;
+}
