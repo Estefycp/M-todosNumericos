@@ -36,5 +36,5 @@ int main ()
     xahora=xprox;
     itrr++;
  }
-  cout<<endl<<"Portanto a raiz mais próxima segundo o método da interação linear:  "<<xprox<<endl;
+  cout<<endl<<"La razi mas proxima es :  "<<xprox<<endl;
 }
