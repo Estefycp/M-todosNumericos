@@ -1,61 +1,147 @@
-#include <iostream>
-#include <cmath>
+#include<iostream>
+#include<cmath>
 
 using namespace std;
-double E = 0.0001;
 
-void bairstow( double *arr, double *arrOr, int size, double r, double s ) {
-    arr[size-1] = arrOr[size-1];
-    arr[size-2] = arr[size-1] * r + arrOr[size-2];
-
-    for ( int i = size - 3; i >= 0; i-- ) {
-        arr[i] = ( arr[i + 1] * r ) + ( arr[i + 2] * s ) + arrOr[i];
+void Bairstow(float r, float s, float array[], int grado){
+	float b[grado+1];
+    float c[grado+1];
+    b[0]= array[0];
+    b[1] = array[1]+(b[0]*r);
+    b[2] = array[2]+(b[1]*r)+(b[0]*s);
+    for (int i = 3; i < grado+1; ++i)
+    {
+        b[i] = array[i] + (b[i-1]*r) + (b[i-2]*s);
     }
-    return;
+
+    cout << "-----b-----" << endl;
+    for (int i = 0; i < grado+1; ++i)
+    {
+        cout << b[i] <<endl;
+    }
+    cout << "----------" << endl;
+
+    c[0]= b[0];
+    c[1] = b[1]+(c[0]*r);
+    c[2] = b[2]+(c[1]*r)+(c[0]*s);
+    for (int i = 3; i < grado+1; ++i)
+    {
+        c[i] = b[i] + (c[i-1]*r) + (c[i-2]*s);
+    }
+
+    cout << "-----c-----" << endl;
+    for (int i = 0; i < grado+1; ++i)
+    {
+        cout << c[i] <<endl;
+    }
+    cout << "----------" << endl;
+
+
+    float A = c[grado-2];
+    float B = c[grado-3];
+    float C = -b[grado-1];
+    float P = c[grado-1];
+    float Q = c[grado-2];
+    float R = -b[grado];
+
+    float deltaR = ((C*Q)-(B*R))/((A*Q)-(P*B));
+    float deltaS = ((A*R)-(C*P))/((A*Q)-(P*B));
+    cout << "deltaR" << deltaR << endl;
+    cout << "deltaS" << deltaS << endl;
+
+    r += deltaR;
+    s += deltaS;
+    cout << "nueva r: " << r <<endl;
+    cout << "nueva s: " << s <<endl;
+
+    float errorR = abs(deltaR/r)*100;
+    float errorS = abs(deltaS/s)*100;
+
+    cout << "ErrorR: " << errorR << endl;
+    cout << "ErrorS: " << errorS << endl;
+
+    int counter = 0;
+
+    while (errorR >= .01 || errorS >= .01){
+        b[0]= array[0];
+        b[1] = array[1]+(b[0]*r);
+        b[2] = array[2]+(b[1]*r)+(b[0]*s);
+        for (int i = 3; i < grado+1; ++i)
+        {
+            b[i] = array[i] + (b[i-1]*r) + (b[i-2]*s);
+        }
+
+        cout << "-----b-----" << endl;
+        for (int i = 0; i < grado+1; ++i)
+        {
+            cout << b[i] <<endl;
+        }
+        cout << "----------" << endl;
+
+        c[0]= b[0];
+        c[1] = b[1]+(c[0]*r);
+        c[2] = b[2]+(c[1]*r)+(c[0]*s);
+        for (int i = 3; i < grado+1; ++i)
+        {
+            c[i] = b[i] + (c[i-1]*r) + (c[i-2]*s);
+        }
+
+        cout << "-----c-----" << endl;
+        for (int i = 0; i < grado+1; ++i)
+        {
+            cout << c[i] <<endl;
+        }
+        cout << "----------" << endl;
+
+
+        A = c[grado-2];
+        B = c[grado-3];
+        C = -b[grado-1];
+        P = c[grado-1];
+        Q = c[grado-2];
+        R = -b[grado];
+
+        deltaR = ((C*Q)-(B*R))/((A*Q)-(P*B));
+        deltaS = ((A*R)-(C*P))/((A*Q)-(P*B));
+        cout << "deltaR" << deltaR << endl;
+        cout << "deltaS" << deltaS << endl;
+
+        r += deltaR;
+        s += deltaS;
+        cout << "nueva r: " << r <<endl;
+        cout << "nueva s: " << s <<endl;
+
+        errorR = abs(deltaR/r);
+        errorS = abs(deltaS/s);
+
+        cout << "ErrorR: " << errorR << endl;
+        cout << "ErrorS: " << errorS << endl;
+
+        counter++;
+    }
+
+    float x1 = (r+sqrt(pow(r,2)+(4*s)))/2;
+    float x2 = (r-sqrt(pow(r,2)+(4*s)))/2;
+    cout << "----RAICES-----" << endl;
+    cout << "x1: " << x1 << endl;
+    cout << "x2: " << x2 << endl;
+
+    cout << "-----FIN-----" << endl;
+    for (int i = 0; i < grado-1; ++i)
+    {
+        cout << b[i] <<endl;
+    }
+    cout << "----ITERACIONES-----" << endl;
+    cout << counter << endl;
 }
 
-int main() {
-    double arrVal[] = {2, -10, 10, 5, -5, 15};
-    int size = sizeof(arrVal) / sizeof(arrVal[0]);
-    int count = 1;
+int main(){
+    float arreglo[] = {15, -12.8709, 17.9903, -4.78701};
+    int size = sizeof(arreglo)/sizeof(arreglo[0]);
+    int grado = size-1;
+    cout << "Grado = " << grado << endl;
+    float r = -0.526994;
+    float s = 0.413887;
 
-    double arrB[size];
-    double arrC[size];
-
-    double r = -1;
-    double s = -1;
-
-    double dr;
-    double ds;
-
-    do {
-        bairstow( arrB, arrVal, size, r, s );
-        bairstow( arrC, arrB, size, r, s );
-        dr = ( -arrB[1] * arrC[2] - arrC[3] * -arrB[0] ) / ( arrC[2] * arrC[2] - arrC[1] * arrC[3] );
-        ds = ( -arrB[0] * arrC[2] - arrC[1] * -arrB[1] ) / ( arrC[2] * arrC[2] - arrC[1] * arrC[3] );
-
-        double errorR = ( dr / r ) * 100;
-        double errorS = ( ds / s ) * 100;
-
-        if ( abs(errorR) <= E && abs(errorS) <= E ) {
-            break;
-        }
-        r += dr;
-        s += ds;
-        count++;
-    } while (true);
-
-    double x1 = ( r + sqrt( r * r + 4 * s ) ) / 2;
-    double x2 = ( r - sqrt( r * r + 4 * s ) ) / 2;
-
-    cout << "Root 1: " << x1 << endl
-    << "Root 2: " << x2 << endl;
-
-    cout << "r: " << r << endl
-    << "s: " << s << endl;
-
-    for ( int i = 0; i < size; i++ ) {
-        cout << "Coeficientes de la funcion con menor grado " << arrC[i] << endl;
-    }
-    return 0;
+    Bairstow(r,s,arreglo,grado);
 }
