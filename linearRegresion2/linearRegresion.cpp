@@ -26,8 +26,8 @@ int main()
     cout<<"La regresion linear es y= "<<a1<<"x + "<<a0<<endl;
 
     //coeficiente de correlación
-        double st,sr;
-        pxy=sx2=sr=divisionAbajo=0.0;
+        double st=0,sr=0;
+     
         for(int i=0; i<n; i++){
             sr+=pow((y[i]-a0-a1*x[i]),2);
             st+=(y[i]-mediaY)*(y[i]-mediaY);
