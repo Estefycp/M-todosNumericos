@@ -43,7 +43,7 @@ double *linear_regression(unsigned n, string x_file, string y_file) {
     std_xy += (xs[i] - mu_x) * (ys[i] - mu_y);
   }
 
-  // standard deviation
+  //derivacion estandar
   std_x = sqrt(std_x/n);
   std_x = sqrt(std_y/n);
   std_xy /= n;
