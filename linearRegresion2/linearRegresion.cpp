@@ -8,7 +8,7 @@ int main()
     double y[] = {69.81,82.75,81.75,80.38,85.89,75.32,69.81,78.54,81.29,99.2,86.35,110.23,106.55,85.50,90.02};
     int i,j,k,n;
     cout<<"\n Cuantos pares de datos ingresaran?\n";
-    cin>>n;
+    cin>>n; //en este caso son 15
     double a0=0,a1=0,error=0,EE=0,xsum=0,x2sum=0,ysum=0,xysum=0,mediaX=0,mediaY=0;
 
     for (i=0;i<n;i++)
