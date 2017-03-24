@@ -7,16 +7,10 @@ int main()
     double x[] = {10.2,11.4,11.5,12.5,13.1,13.4,13.6,15,15.2,15.3,15.6,16.4,16.5,17,17.1};
     double y[] = {69.81,82.75,81.75,80.38,85.89,75.32,69.81,78.54,81.29,99.2,86.35,110.23,106.55,85.50,90.02};
     int i,j,k,n;
-    cout<<"\n Cuantos partes de datos ingresaran?\n";
+    cout<<"\n Cuantos pares de datos ingresaran?\n";
     cin>>n;
-    double a0,a1,error,EE;
-    //cout<<"\n Pon los valores X\n";
-    //for (i=0;i<n;i++)
-       // cin>>x[i];
-    //cout<<"\n Pon los valores Y\n";
-    //for (i=0;i<n;i++)
-        //cin>>y[i];
-    double xsum=0,x2sum=0,ysum=0,xysum=0,mediaX,mediaY;
+    double a0=0,a1=0,error=0,EE=0,xsum=0,x2sum=0,ysum=0,xysum=0,mediaX=0,mediaY=0;
+
     for (i=0;i<n;i++)
     {
         xsum=xsum+x[i];
