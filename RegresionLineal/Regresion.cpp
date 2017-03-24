@@ -12,7 +12,7 @@ int main()
     cout<<"\n Cuantos partes de datos ingresaran?\n";
     cin>>n;
     double a0,a1,error,EE;
-    cout<<"\n Pon los valores X\n";
+    //cout<<"\n Pon los valores X\n";
     //for (i=0;i<n;i++)
        // cin>>x[i];
     //cout<<"\n Pon los valores Y\n";
