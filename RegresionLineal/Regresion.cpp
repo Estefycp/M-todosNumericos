@@ -60,7 +60,7 @@ double *linear_regression(unsigned n, string x_file, string y_file) {
 }
 
 int main(int argc, char const *argv[]) {
-  linear_regression(15, "temp_diff.txt", "kWh.txt");
+  linear_regression(15, "TD.txt", "KWH.txt");
 
   return 0;
 }
