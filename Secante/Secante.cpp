@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <cmath>
 #define ERRORMIN 1E-12
