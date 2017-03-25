@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <cmath>
 #define ERRORMIN 1E-12
@@ -9,25 +10,27 @@ double f (double x)
 {
      return (x*x*x)-(3*x*x)-4*x+2;
 }
+
+
+double secante(double x0, double x1){
+    double temp, error;
+        int i = 0;
+       cout<<"Valor de error: ";
+       cin>>error;
+
+       do{
+
+          temp = x0;
+          x0= x1;
+          x1 = x0 - (x0-temp) * f(x0) / (f(x0) - f(temp));
+          i++;
+       } while ( fabs (x0-x1) > error );
+     cout<<"La raiz mas proxima es :  "<<x1<< " con " << i << " iteraciones"<< endl;
+
+
+}
 int main ()
 {
-   double temp, x1, x2,  error;
-    int i = 0;
-   cout<<"Valor de error: ";
-   cin>>error;
-   cout<<"valor de (x0): ";
-   cin>>x1;
-   cout<<"Valor de (x1): ";
-   cin>>x2;
-   cout<<endl;
-
-
-   do{
-      
-      temp = x1;
-      x1= x2;
-      x2 = x1 - (x1-temp) * f(x1) / (f(x1) - f(temp));
-      i++;   
-   } while ( fabs (x1-x2) > error );
-  cout<<endl<<"La raiz mas proxima es :  "<<x2<< " con " << i << " iteraciones" endl;
+   cout<< secante(-2,1) << endl;
 }
+
