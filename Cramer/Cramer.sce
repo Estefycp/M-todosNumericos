@@ -1,24 +1,15 @@
-function [ X ] = cramer(A, B)
+A = input("Introduce la matriz A: ")
+b = input("Introduce el vector b: ")
 
-    [s u] = size(A);
-    
-    if s~= u
-      error('A debe ser una matriz cuadratica');
-    elseif s ~= size(B)(1)
-      error('A y B no concuerdan en size');
+d = det(A)
+
+if size(A,1)==size(b,1) then
+    for i=1:size(A,2)
+        Ai = A
+        Ai(:,i) = b
+        X(i) = det(Ai)/d
     end
-    
-    detS = det(A);
-    X = zeros(s(1), 1);
-    for i = 1 : s(1)
-        t = A(:, i);
-        A(:, i) = B;
-        R(i) = det(A) / detS;
-        A(:, i) = t;
-    end
-endfunction
-
-A = [3., -0.1, -0.2; 0.1, 7., -0.3; 0.3, -0.2, 10.]
-B = [7.85; -19.3; 71.4]
-
-X = cramer(A, B)
+    disp(X)
+else
+    disp("Dimensiones no compatibles")
+end
